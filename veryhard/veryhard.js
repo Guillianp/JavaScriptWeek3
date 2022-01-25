@@ -28,61 +28,73 @@
 
 // function Programmer(name, job, age, languages) { }
 
-function Person(name, age, job) {
-    this.name = name
-    this.age = age
-    this.job = job
-    
-    this.exercise = function(){
-        console.log("High intensity interval training is an effective workout, -not for the fitness challenged like me")
-    }
-    this.fetchJob = function(){
-        console.log(`${this.name} is a ${this.job}`)
-    }
+
+function Person(name, job, age) {
+    this.name = name;
+    this.job = job;
+    this.age = age;
 }
 
-function Programmer(name, job, age, languages) {
+Person.prototype.exercise = function () {
+    console.log(`${this.name},High intensity interval training is an effective workout, -not for the fitness challenged like me`)
+}
+
+Person.prototype.fetchJob = function () {
+    console.log(`${this.name} is a ${this.job}.`)
+}
+
+var Bj = new Person('BJ', 'CEO', 30);
+Bj.fetchJob();
+Bj.exercise();
+
+
+
+function Programmer(name, job, age, languages = []) {
     Person.call(this, name, job, age)
-    this.languages = [languages]
-    this.busy = true
-    this.completeTask = function(){
-        this.busy = false
-    }
-    this.acceptNewTask = function(){
-        this.busy = true
-    }
-    this.offerNewTask = function(){
-        if(this.busy){
-            console.log(`${this.name} can't accept any new tasks right now`)
-        } 
-        else{
-            console.log(`${this.name} would love to take on a new responsibility`)
-        }
-    }
-    this.learnLanguage = function(language){
-        this.languages.push(language)
-    }
-    this.listLanguages = function(){
-        console.log(this.languages)
+    this.languages = languages;
+    this.busy = true;
+}
+
+Programmer.prototype = Object.create(Person.prototype) 
+
+
+Programmer.prototype.completeTask = function () {
+    this.busy = false;
+}
+
+Programmer.prototype.acceptNewTask = function () {
+    this.busy = true;
+}
+
+Programmer.prototype.offerNewTask = function () {
+    if (this.busy === true) {
+        console.log(`${this.name} can't accept any new tasks right now.`)
+    } else {
+        console.log(`${this.name} would love to take on a new responsibility.`)
     }
 }
 
+Programmer.prototype.learnLanguage = function () {
+    this.languages.push("JavaScript", "CSS", "Python", "C#", "Java", "C++");
+}
 
-const Guillian = new Person("Guillian", "Front End Developer", "25")
+Programmer.prototype.listLanguages = function () {
+    for (var i = 0; i < this.languages.length; i++) {
+        console.log(`${this.languages[i]}`)
+    }
+}
 
-const Bj = new Programmer("BJ", "Front End Developer", "29", "Portuguese")
+var Guillian = new Programmer("Guillian", "Front-end Developer", 25, "Portuguese")
 
-
-Guillian.exercise()
-Guillian.fetchJob()
-
-Bj.exercise()
-Bj.completeTask()
-Bj.offerNewTask()
-Bj.listLanguages()
-Bj.learnLanguage("English")
-Bj.listLanguages()
-
+console.log(Guillian);
+Guillian.exercise();
+Guillian.fetchJob();
+Guillian.completeTask();
+Guillian.log(Guillian.offerNewTask());
+Guillian.acceptNewTask();
+console.log(Guillian.offerNewTask());
+Guillian.learnLanguage();
+Guillian.log(Guillian.listLanguages());
 
 
 
