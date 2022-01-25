@@ -74,10 +74,6 @@ Programmer.prototype.offerNewTask = function () {
     }
 }
 
-Programmer.prototype.learnLanguage = function () {
-    this.languages.push("JavaScript", "CSS", "Python", "C#", "Java", "C++");
-}
-
 Programmer.prototype.listLanguages = function () {
     for (var i = 0; i < this.languages.length; i++) {
         console.log(`${this.languages[i]}`)
