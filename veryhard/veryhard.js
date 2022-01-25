@@ -27,3 +27,64 @@
 // function Person(name, job, age) { }
 
 // function Programmer(name, job, age, languages) { }
+
+function Person(name, age, job) {
+    this.name = name
+    this.age = age
+    this.job = job
+    
+    this.exercise = function(){
+        console.log("High intensity interval training is an effective workout, -not for the fitness challenged like me")
+    }
+    this.fetchJob = function(){
+        console.log(`${this.name} is a ${this.job}`)
+    }
+}
+
+function Programmer(name, job, age, languages) {
+    Person.call(this, name, job, age)
+    this.languages = [languages]
+    this.busy = true
+    this.completeTask = function(){
+        this.busy = false
+    }
+    this.acceptNewTask = function(){
+        this.busy = true
+    }
+    this.offerNewTask = function(){
+        if(this.busy){
+            console.log(`${this.name} can't accept any new tasks right now`)
+        } 
+        else{
+            console.log(`${this.name} would love to take on a new responsibility`)
+        }
+    }
+    this.learnLanguage = function(language){
+        this.languages.push(language)
+    }
+    this.listLanguages = function(){
+        console.log(this.languages)
+    }
+}
+
+
+const Guillian = new Person("Guillian", "Front End Developer", "25")
+
+const Bj = new Programmer("BJ", "Front End Developer", "29", "Portuguese")
+
+
+Guillian.exercise()
+Guillian.fetchJob()
+
+Bj.exercise()
+Bj.completeTask()
+Bj.offerNewTask()
+Bj.listLanguages()
+Bj.learnLanguage("English")
+Bj.listLanguages()
+
+
+
+
+
+

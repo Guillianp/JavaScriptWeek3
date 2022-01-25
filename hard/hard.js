@@ -7,3 +7,18 @@
 
 // You can use 'getName' or other get methods to access data that people might need. For example, people addressing a package or email may 
 // need a customer's name, but they definitely shouldn't have access to their ssn.
+
+function getPersonalInfo() {
+    const pii = {
+      name: "Guillian Prince",
+      ssn: "000-04-0304",
+    };
+    
+    this.getName = function () {
+      return pii.name;
+    };
+  }
+  
+  const info = new getPersonalInfo();
+  console.log(info.getName())
+
